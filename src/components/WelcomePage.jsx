@@ -4,6 +4,7 @@ import { changeName } from '../store/slices/user.slice';
 import { useNavigate } from 'react-router-dom';
 import '../App.css'
 import Header from './Header';
+import Footer from './Footer';
 
 
 
@@ -41,9 +42,7 @@ const WelcomePage = () => {
                     </form>
                 </div>
             </div>
-            {/* <div className='col-sm-12 col-md-8 m-auto'>
-                <img src="https://c.tenor.com/VpMudRmCn6EAAAAC/pokemon-dpp.gif" style={{ width: '100%'}} />
-            </div> */}
+            <Footer/>
         </>
     );
 };

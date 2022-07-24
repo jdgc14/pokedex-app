@@ -2,7 +2,14 @@ body {
     font-family: 'Rubik', sans-serif;
 }
 
+span {
+    font-weight: 600;
+}
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
 
 
 .App {
@@ -14,16 +21,25 @@ body {
     background: #d8eefe;
 }
 
+.bg-blue-dark {
+    background: #094067;
+}
+
 .headline {
     font-weight: bold;
     color: #094067;
-    margin-top: 1rem;
 }
 
 .paragraph {
     color: #5f6c7b;
-    text-align: justify;
-    margin-top: 1rem;
+}
+
+.paragraph-white {
+    color: #fffffe;
+}
+
+.paragraph-blue {
+    color: #3da9fc;
 }
 
 .button {
