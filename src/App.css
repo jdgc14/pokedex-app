@@ -62,6 +62,24 @@ a {
     color: #fffffe;
 }
 
+.scroll-vertical {
+    overflow-y: scroll;
+    height: 70vh;
+}
+
+#pokemon-moves :nth-child(odd){
+    color: #094067;
+    font-weight: 600
+}
+#pokemon-moves :nth-child(even){
+    font-weight: 600
+}
+
+.ability-description {
+    /* color: #5f6c7b; */
+    /* font-weight: 600; */
+    text-align: justify !important;
+}
 
 
 /* ANIMATIONS */

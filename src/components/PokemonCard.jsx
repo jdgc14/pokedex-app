@@ -16,8 +16,6 @@ const PokemonCard = ({ pokemonUrl }) => {
                 name: res.data.name,
                 types: res.data.types.map(type => type.type.name),
                 image: res.data.sprites.other.dream_world.front_default,
-                height: res.data.height,
-                weight: res.data.weight,
                 hp: res.data.stats[0].base_stat,
                 speed: res.data.stats[5].base_stat,
                 attack: res.data.stats[1].base_stat,
