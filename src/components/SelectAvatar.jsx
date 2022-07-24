@@ -36,7 +36,7 @@ const SelectAvatar = () => {
                 <div className='row'>
                     {avatar.map(character =>
                         <div key={character} className='col-sm-12 col-md-4 col-lg-3 col-xl-2 mt-3 text-center' style={{ height: '300px' }}>
-                            <button className='border border-dark rounded p-4 m-auto btn btn-light' style={{ width: '80%', height: '100%' }}>
+                            <button className='border border-dark rounded p-4 m-auto btn btn-light zoom' style={{ width: '80%', height: '100%' }}>
                                 <img src={character} onClick={() => selectAvatar(character)} style={{ width: '100%', height: '100%' }} />
                             </button>
                         </div>

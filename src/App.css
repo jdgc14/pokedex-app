@@ -11,10 +11,13 @@ a {
     color: inherit;
 }
 
-
 .App {
     background: #fffffe;
     min-height: 100vh;
+}
+
+.bg-prima {
+    background: #fffffe;
 }
 
 .bg-secon {
@@ -44,6 +47,28 @@ a {
 
 .button {
     background: #3da9fc;
-    margin-top: 1rem;
+    color: #fffffe;
+    border: 1px solid #3da9fc;
+}
+
+.button:hover {
+    background: #094067;
+    color: #fffffe;
+    border: 2px solid #094067;
+}
+
+.option {
+    background: #094067;
     color: #fffffe;
 }
+
+
+
+/* ANIMATIONS */
+.zoom {
+    transition: transform 0.4s;
+  }
+  
+.zoom:hover {
+    transform: scale(1.2);
+  }

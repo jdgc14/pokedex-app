@@ -11,11 +11,19 @@ const NavBar = () => {
     const dispatch = useDispatch()
 
     return (
-        <div>
-            <h1>NavBar</h1>
-            <button onClick={() => dispatch(changeName(''))}>Exit</button>
-            <button onClick={() => navigate('/pokedex')}>Home</button>
-            <button onClick={(e) => navigate(-1)}>Atras</button>
+        <div className='d-flex flex-column p-1' style={{ position: 'fixed', zIndex:'1'}}>
+            <button onClick={() => dispatch(changeName(''))} className='btn'>
+                <i className="fa-solid fa-right-from-bracket"></i>
+            </button>
+            <button onClick={() => navigate('/pokedex')} className='btn'>
+                <i className="fa-solid fa-house"></i>
+            </button>
+            <button onClick={(e) => navigate(-1)} className='btn'>
+                <i className="fa-solid fa-arrow-left"></i>
+            </button>
+            <button type="button" className="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <i className="fa-solid fa-gear"></i>
+            </button>
         </div>
     );
 };

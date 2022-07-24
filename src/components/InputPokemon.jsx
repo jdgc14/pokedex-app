@@ -14,10 +14,12 @@ const InputPokemon = () => {
 
 
     return (
-        <div>
-            <form onSubmit={submit}>
-                <input type="text" value={pokemonName} onChange={e => setPokemonName(e.target.value)} />
-                <button>Submit</button>
+        <div className='col-12 col-sm-6'>
+            <form onSubmit={submit} className="input-group mb-3">
+                <input type="text" value={pokemonName} onChange={e => setPokemonName(e.target.value)} className="form-control" placeholder="Search by Name or ID" />
+                <button className="btn button">
+                    <i className="fa-solid fa-magnifying-glass"></i>
+                </button>
             </form>
         </div>
     );

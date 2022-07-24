@@ -26,7 +26,7 @@ const WelcomePage = () => {
     return (
         <>
             <Header />
-            <div className='bg-secon p-5'>
+            <div className='bg-secon p-4'>
                 <div style={{ display: 'grid', placeContent: 'center' }}>
                     <div className='d-flex'>
                         <div>
@@ -38,7 +38,7 @@ const WelcomePage = () => {
                     <form onSubmit={submit}>
                         <h5 className='paragraph'>Please write your name</h5>
                         <input type="text" className='form-control' value={userName} onChange={e => setUserName(e.target.value)} />
-                        <button className='btn button'>Submit</button>
+                        <button className='btn button mt-3'>Submit</button>
                     </form>
                 </div>
             </div>

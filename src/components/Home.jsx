@@ -1,10 +1,10 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import PokemonCard from './PokemonCard';
 import Configs from './Configs';
 import InputTypePokemon from './InputTypePokemon';
 import InputPokemon from './InputPokemon';
+import '../App.css';
 
 const Home = () => {
 
@@ -42,17 +42,21 @@ const Home = () => {
     }
 
     return (
-        <div>
-            <h1>Home</h1>
-            <h3>Welcome {user}, here you can find your favorite pokemon</h3>
-            <InputTypePokemon setPokemons={setPokemons}/>
-            <InputPokemon/>
-            {pokemonsPaginated.map(pokemon => <PokemonCard key={pokemon.url} pokemonUrl={pokemon.url} />)}
-            <button onClick={down} className='btn btn-secondary'>Prev Page</button>
-            <button onClick={up} className='btn btn-secondary'>Next Page</button>
-            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <i className="fa-solid fa-gear"></i>
-            </button>
+        <div className='bg-secon p-4'>
+            <h2 className='paragraph'>
+                <span className='headline'>Welcome {user}</span>, here you can find your favorite pokemon
+            </h2>
+            <div className='d-flex flex-column flex-sm-row gap-2'>
+                <InputPokemon />
+                <InputTypePokemon setPokemons={setPokemons} />
+            </div>
+            <div id='pokemons-home-container' className='row'>
+                {pokemonsPaginated.map(pokemon => <PokemonCard key={pokemon.name} pokemonUrl={pokemon.url} />)}
+            </div>
+            <div className='d-flex p-4 mt-3 justify-content-around'>
+                <button onClick={down} className='button btn'>Prev Page</button>
+                <button onClick={up} className='button btn'>Next Page</button>
+            </div>
             <Configs />
         </div>
     );
