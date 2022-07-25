@@ -26,7 +26,7 @@ const WelcomePage = () => {
     return (
         <>
             <Header />
-            <div className='bg-secon p-4'>
+            <div className='bg-secon p-4' style={{minHeight:'100vh'}}>
                 <div style={{ display: 'grid', placeContent: 'center' }}>
                     <div className='d-flex'>
                         <div>

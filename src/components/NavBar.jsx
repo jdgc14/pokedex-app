@@ -11,7 +11,7 @@ const NavBar = () => {
     const dispatch = useDispatch()
 
     return (
-        <div className='d-flex flex-column p-1' style={{ position: 'fixed', zIndex:'1'}}>
+        <div className='d-flex flex-column p-1' style={{ position: 'fixed', zIndex: '1' }}>
             <button onClick={() => dispatch(changeName(''))} className='btn'>
                 <i className="fa-solid fa-right-from-bracket"></i>
             </button>
@@ -23,6 +23,9 @@ const NavBar = () => {
             </button>
             <button type="button" className="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <i className="fa-solid fa-gear"></i>
+            </button>
+            <button type="button" onClick={() => navigate('/pokedex/profile')}  className="btn">
+                <i className="fa-solid fa-user"></i>
             </button>
         </div>
     );

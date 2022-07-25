@@ -54,8 +54,8 @@ const Home = () => {
                 {pokemonsPaginated.map(pokemon => <PokemonCard key={pokemon.name} pokemonUrl={pokemon.url} />)}
             </div>
             <div className='d-flex p-4 mt-3 justify-content-around'>
-                <button onClick={down} className='button btn'>Prev Page</button>
-                <button onClick={up} className='button btn'>Next Page</button>
+                <button onClick={down} className={`button btn ${page === 1 && 'disabled'}`}>Prev Page</button>
+                <button onClick={up} className={`button btn ${(page === lastPage || lastPage === 0) && 'disabled'}`}>Next Page</button>
             </div>
             <Configs />
         </div>

@@ -8,9 +8,11 @@ import NavBar from './NavBar';
 
 const MainLayout = () => {
 
-    const user = useSelector(state => state.user).name
+    const user = useSelector(state => state.user.name)
 
-    if (true) {
+    const avatar = useSelector(state => state.user.avatar)
+    //user && avatar
+    if (user && avatar) {
         return (
             <>
                 <NavBar />

@@ -6,7 +6,6 @@ export const userSlice = createSlice({
     initialState: {
         name: '',
         avatar: '',
-        pokemons: [],
         pokemonsVisibles: 6,
         isDarkMode: false,
     },

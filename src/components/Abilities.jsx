@@ -19,7 +19,6 @@ const Abilities = ( {urlAbility, type} ) => {
         getAbility()
     }, [])
 
-    console.log(ability)
     return (
         <div className='text-justify'>
             <h6 style={{color:`var(--${type}-color)`}}><span>{ability.name}</span></h6>

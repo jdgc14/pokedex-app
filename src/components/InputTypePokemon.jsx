@@ -1,15 +1,18 @@
 import axios from 'axios';
 import '../App.css';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import  {setType}  from '../store/slices/type.slice';
 
 const InputTypePokemon = ( {setPokemons} ) => {
+
+    const dispatch = useDispatch()
 
     const pokemonsVisibles = useSelector(state => state.user.pokemonsVisibles)
 
     const [types, setTypes] = useState([])
 
-    const [type, setType] = useState('all')
+    const type = useSelector(state => state.type)
 
     const getTypes = () => {
         axios.get('https://pokeapi.co/api/v2/type')
@@ -34,9 +37,10 @@ const InputTypePokemon = ( {setPokemons} ) => {
         getPokemonByType(type)
     }, [ pokemonsVisibles, type])
 
+
     return (
         <div className='col-12 col-sm-6'>
-            <select onChange={(e) => setType(e.target.value)} className='form-select form-select-lg' style={{fontSize: '1rem', textTransform:'capitalize'}}>
+            <select onChange={(e) => dispatch(setType(e.target.value))} className='form-select form-select-lg' style={{fontSize: '1rem', textTransform:'capitalize'}}>
                 <option id='all' value="all">All Pokemons</option>
                 {types.map(type => <option key={type} value={type}>{type}</option>)}
             </select>

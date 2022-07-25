@@ -3,7 +3,9 @@ import './App.css'
 import Home from './components/Home'
 import MainLayout from './components/MainLayout'
 import PokemonDetails from './components/PokemonDetails'
+import PokemonNotFound from './components/PokemonNotFound'
 import SelectAvatar from './components/SelectAvatar'
+import TrainerProfile from './components/TrainerProfile'
 import WelcomePage from './components/WelcomePage'
 
 function App() {
@@ -17,6 +19,8 @@ function App() {
           <Route element={<MainLayout/>}>
             <Route path="/pokedex" element={<Home />} />
             <Route path="/pokedex/:id" element={<PokemonDetails />} />
+            <Route path="/pokedex/not-found" element={<PokemonNotFound />} />
+            <Route path="/pokedex/profile" element={<TrainerProfile />} />
           </Route>
         </Routes>
       </HashRouter>

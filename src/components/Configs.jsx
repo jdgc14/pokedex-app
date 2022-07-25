@@ -13,30 +13,42 @@ const Configs = () => {
         <>
             <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
-                    <div className="modal-content">
+                    <div className="modal-content bg-blue-dark paragraph-white">
                         <div className="modal-header">
                             <h2 className="modal-title" id="exampleModalLabel">Settings</h2>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <div>
-                                <button onClick={() => dispatch(changePokemonsVisibles(4))}>4</button>
-                                <button onClick={() => dispatch(changePokemonsVisibles(6))}>6</button>
-                                <button onClick={() => dispatch(changePokemonsVisibles(8))}>8</button>
-                                <button onClick={() => dispatch(changePokemonsVisibles(12))}>12</button>
-                                <button onClick={() => dispatch(changePokemonsVisibles(16))}>16</button>
-                                <button onClick={() => dispatch(changePokemonsVisibles(20))}>20</button>
+                            <h6>Pokemons per page</h6>
+                            <div className='d-flex justify-content-evenly'>
+                                <button onClick={() => dispatch(changePokemonsVisibles(4))} className='btn btn-dark'>
+                                    4
+                                </button>
+                                <button onClick={() => dispatch(changePokemonsVisibles(6))} className='btn btn-dark'>
+                                    6
+                                </button>
+                                <button onClick={() => dispatch(changePokemonsVisibles(8))} className='btn btn-dark'>
+                                    8
+                                </button>
+                                <button onClick={() => dispatch(changePokemonsVisibles(12))} className='btn btn-dark'>
+                                    12
+                                </button>
+                                <button onClick={() => dispatch(changePokemonsVisibles(16))} className='btn btn-dark'>
+                                    16
+                                </button>
+                                <button onClick={() => dispatch(changePokemonsVisibles(20))} className='btn btn-dark'>
+                                    20
+                                </button>
                             </div>
-                            <div>
-                                <div className="form-check form-switch">
-                                    <input onChange={() => dispatch(changeIsDarkMode(!isDarkMode))} className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"/>
-                                    <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Dark Mode</label>
-                                </div>
+                        </div>
+                        <div className="modal-footer justify-content-start">
+                            <div className="form-check form-switch">
+                                <input onChange={() => dispatch(changeIsDarkMode(!isDarkMode))} className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                                <label className="form-check-label" htmlFor="flexSwitchCheckDefault">{isDarkMode? 'Light':'Dark'}</label>
                             </div>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary">Save changes</button>
                         </div>
                     </div>
                 </div>
