@@ -68,11 +68,8 @@ a {
 }
 
 #pokemon-moves :nth-child(odd){
-    color: #094067;
-    font-weight: 600
-}
-#pokemon-moves :nth-child(even){
-    font-weight: 600
+    color: white;
+    /* font-weight: 600 */
 }
 
 .ability-description {

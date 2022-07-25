@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
-const Abilities = ( {urlAbility} ) => {
+const Abilities = ( {urlAbility, type} ) => {
 
     const [ability, setAbility] = useState({})
 
@@ -22,8 +22,8 @@ const Abilities = ( {urlAbility} ) => {
     console.log(ability)
     return (
         <div className='text-justify'>
-            <h6><span>{ability.name}</span></h6>
-            <h6 className='ability-description'>{ability.description}</h6>
+            <h6 style={{color:`var(--${type}-color)`}}><span>{ability.name}</span></h6>
+            <h6 className='ability-description' style={{textTransform:'none'}}>{ability.description}</h6>
         </div>
     );
 };
