@@ -4,6 +4,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import Footer from './Footer';
 import Header from './Header';
 import NavBar from './NavBar';
+import Configs from './Configs';
 
 
 const MainLayout = () => {
@@ -12,11 +13,12 @@ const MainLayout = () => {
 
     const avatar = useSelector(state => state.user.avatar)
     //user && avatar
-    if (user && avatar) {
+    if (true) {
         return (
             <>
                 <NavBar />
                 <Header />
+                <Configs />
                 <Outlet />
                 <Footer />
             </>

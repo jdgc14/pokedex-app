@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux'
 import { HashRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
 import Home from './components/Home'
@@ -10,8 +11,12 @@ import WelcomePage from './components/WelcomePage'
 
 function App() {
 
+  const isDark = useSelector(state => state.user.isDarkMode)
+
+  console.log(isDark)
+
   return (
-    <div className="App">
+    <div className={`App ${isDark? 'bg-prima-dark paragraph-white':'bg-secon'}`}>
       <HashRouter>
         <Routes>
           <Route path="/" element={<WelcomePage />} />

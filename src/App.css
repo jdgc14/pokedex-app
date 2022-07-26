@@ -11,6 +11,10 @@ a {
     color: inherit;
 }
 
+a:hover {
+    color: inherit;
+}
+
 .App {
     background: #fffffe;
     min-height: 100vh;
@@ -20,8 +24,20 @@ a {
     background: #fffffe;
 }
 
+.bg-prima-dark {
+    background: #0f0e17;
+}
+
+.bg-orange-dark {
+    background: #ff8906;
+}
+
 .bg-secon {
     background: #d8eefe;
+}
+
+.bg-secon-dark {
+    background: #2e2f3e
 }
 
 .bg-blue-dark {
@@ -31,6 +47,11 @@ a {
 .headline {
     font-weight: bold;
     color: #094067;
+}
+
+.headline-dark{
+    font-weight: bold;
+    color: #ff8906;
 }
 
 .paragraph {
@@ -51,10 +72,22 @@ a {
     border: 1px solid #3da9fc;
 }
 
+.button-dark {
+    background: #ff8906;
+    color: #fffffe;
+    border: 1px solid #ff8906;
+}
+
 .button:hover {
     background: #094067;
     color: #fffffe;
-    border: 2px solid #094067;
+    border: 1px solid #094067;
+}
+
+.button-dark:hover {
+    background: #ca6e04;
+    color: #fffffe;
+    border: 1px solid #ca6e04;
 }
 
 .option {

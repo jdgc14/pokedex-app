@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import PokemonCard from './PokemonCard';
-import Configs from './Configs';
 import InputTypePokemon from './InputTypePokemon';
 import InputPokemon from './InputPokemon';
 import '../App.css';
 
 const Home = () => {
+    const isDark = useSelector(state => state.user.isDarkMode);
 
     // Get the username and settings from the store 
     const user = useSelector(state => state.user.name)
@@ -28,10 +28,22 @@ const Home = () => {
     const pokemonsPaginated = pokemons.slice(firstIndex, lastIndex)
 
     const lastPage = Math.ceil(pokemons.length / pokemonsVisibles)
-
+    console.log(lastPage)
     const numbersOfPages = []
 
-    for (let i = 1; i <= lastPage;) numbersOfPages.push(i), i++
+    for (let i = page - 3; i <= page + 3; i++) {
+        if (i > 0 && i <= lastPage) {
+            numbersOfPages.push(i)
+        }
+    }
+
+    if (page === 1) {
+        numbersOfPages.push(5, 6, 7)
+    } else if (page === 2) {
+        numbersOfPages.push(6, 7)
+    } else if (page === 3) {
+        numbersOfPages.push(7)
+    }
 
     const up = () => {
         setPage(page + 1)
@@ -42,9 +54,9 @@ const Home = () => {
     }
 
     return (
-        <div className='bg-secon p-4'>
-            <h2 className='paragraph'>
-                <span className='headline'>Welcome {user}</span>, here you can find your favorite pokemon
+        <div className='p-4 container'>
+            <h2 className={`${isDark? 'paragraph-white':'paragraph'}`}>
+                <span className={`${isDark? 'headline-dark':'headline'}`}>Welcome {user}</span>, here you can find your favorite pokemon
             </h2>
             <div className='d-flex flex-column flex-sm-row gap-2'>
                 <InputPokemon />
@@ -53,11 +65,24 @@ const Home = () => {
             <div id='pokemons-home-container' className='row'>
                 {pokemonsPaginated.map(pokemon => <PokemonCard key={pokemon.name} pokemonUrl={pokemon.url} />)}
             </div>
-            <div className='d-flex p-4 mt-3 justify-content-around'>
-                <button onClick={down} className={`button btn ${page === 1 && 'disabled'}`}>Prev Page</button>
-                <button onClick={up} className={`button btn ${(page === lastPage || lastPage === 0) && 'disabled'}`}>Next Page</button>
+            <div className='d-flex p-4 mt-3 justify-content-evenly'>
+                {page !== 1 && (
+                    <button onClick={down} className={`${isDark ? 'button-dark':'button'} p-2 rounded`}>
+                        <i className="fa-solid fa-angle-left"></i>
+                    </button>
+                )}
+                {numbersOfPages.map(number => (
+                    <button key={number} onClick={() => setPage(number)} className={`${isDark ? 'button-dark':'button'} p-2 rounded`}>
+                        {number}
+                    </button>
+                ))}
+                {(page !== lastPage || lastPage !== 0) && (
+                    <button onClick={up} className={`${isDark ? 'button-dark':'button'} p-2 rounded`}>
+                        <i className="fa-solid fa-angle-right"></i>
+                    </button>
+                )}
+
             </div>
-            <Configs />
         </div>
     );
 };

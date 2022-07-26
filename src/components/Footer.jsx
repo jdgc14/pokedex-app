@@ -1,8 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 const Footer = () => {
+
+    const isDark = useSelector(state => state.user.isDarkMode)
+
     return (
-        <div className='bg-blue-dark p-4 paragraph-white' style={{minHeight:'25vh'}}>
+        <div className={`${isDark ? 'bg-orange-dark' : 'bg-blue-dark'} p-4 paragraph-white`} style={{minHeight:'25vh'}}>
             <div className='d-flex justify-content-evenly gap-5 m-auto'>
                 <div>
                     <h2 style={{fontWeight:'600'}}>Pokedex App</h2>

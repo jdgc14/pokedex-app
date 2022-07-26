@@ -9,8 +9,6 @@ const TrainerProfile = () => {
 
     const pokemonsFavoritesID = useSelector(state => state.pokemons)
 
-    console.log(pokemonsFavoritesID)
-
     return (
         <div className='p-4 text-center' style={{ minHeight: '100vh' }}>
             <h2>Hi {user.name}</h2>

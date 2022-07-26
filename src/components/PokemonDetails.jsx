@@ -2,12 +2,15 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Abilities from './Abilities'
+import MovesPokemon from './MovesPokemon'
 import { useDispatch, useSelector } from 'react-redux'
 import { setType } from '../store/slices/type.slice'
 import { addFavorite, deleteFavorite } from '../store/slices/pokemons.slice'
 
 
 const PokemonDetails = () => {
+
+    const isDark = useSelector(state => state.user.isDarkMode)
 
     const { id } = useParams()
 
@@ -98,103 +101,120 @@ const PokemonDetails = () => {
         isOrNotFavorite()
     }, [pokemon, pokemonsFavorites])
 
+
+    const movesPaginated = pokemon.moves?.slice(0, 10)
+    console.log(movesPaginated)
+
     return (
-        <div className={`text-center p-4 bg-secon text-capitalize position-relative`}>
-            <button onClick={goPrev} className={`btn button bg-${pokemon.types?.[0]} position-absolute border-0 p-2 rounded ${!prevPokemonName && 'disabled'}`} style={{ top: '10px', left: '30px' }}>
-                <i className="fas fa-arrow-left"></i> {prevPokemonName}
-            </button>
-            <button onClick={goNext} className={`btn button bg-${pokemon.types?.[0]} position-absolute border-0 p-2 rounded ${!nextPokemonName && 'disabled'}`} style={{ top: '10px', right: '30px' }}>
-                {nextPokemonName} <i className="fas fa-arrow-right"></i>
-            </button>
-
-
-            <div className={`m-auto mt-5 rounded p-2 col-12 col-md-8 shadow bg-${pokemon.types?.[0]} position-relative`}>
-                <div className='position-absolute text-danger' style={{ right: '10px', cursor: 'pointer' }}>
-                    {isFavorite ? (
-                        <i className="fa-solid fa-heart" onClick={() => unfavorite(pokemon.id)}></i>
-                    ):(
-                        <i className="fa-regular fa-heart" onClick={() => favorite(pokemon.id)}></i>
+        <div className='container'>
+            <div className={`text-center text-capitalize position-relative`}>
+                <div className=''>
+                    {prevPokemonName && (
+                        <button onClick={goPrev} className={`button bg-${pokemon.types?.[0]} position-absolute border-0 p-2 rounded`} style={{ top: '-45px', left: '30px' }}>
+                            <i className="fas fa-arrow-left"></i> <small>{prevPokemonName}</small>
+                        </button>
+                    )}
+                    {nextPokemonName && (
+                        <button onClick={goNext} className={`button bg-${pokemon.types?.[0]} position-absolute border-0 p-2 rounded`} style={{ top: '-45px', right: '30px' }}>
+                            <small>{nextPokemonName}</small> <i className="fas fa-arrow-right"></i>
+                        </button>
                     )}
                 </div>
-                <img src={pokemon.image} className='col-12 col-md-4' />
-                <div className='bg-prima rounded p-2'>
-                    <h3>N.º{pokemon.id}</h3>
-                    <div className='d-flex m-auto justify-content-center' style={{ width: '80%' }}>
-                        <div className='col-3 col-sm-4 col-md-5 mt-3 border-2 border-top'></div>
-                        <h2 className='mx-3' style={{ color: `var(--${pokemon.types?.[0]}-color)` }}>
-                            <span>{pokemon.name}</span>
-                        </h2>
-                        <div className='col-3 col-sm-4 col-md-5 mt-3 border-2 border-top'></div>
+
+
+                <div className={`m-auto mt-5 rounded p-2 col-10 col-md-8 shadow bg-${pokemon.types?.[0]} position-relative`}>
+                    <div className='position-absolute text-danger' style={{ right: '10px', cursor: 'pointer' }}>
+                        {isFavorite ? (
+                            <i className="fa-solid fa-heart" onClick={() => unfavorite(pokemon.id)}></i>
+                        ) : (
+                            <i className="fa-regular fa-heart" onClick={() => favorite(pokemon.id)}></i>
+                        )}
                     </div>
-                    <div className='d-flex justify-content-evenly'>
-                        <h3>Height<br />
-                            <span style={{ color: `var(--${pokemon.types?.[0]}-color)`, textTransform: 'none' }}>
-                                {pokemon.height} dm
-                            </span>
-                        </h3>
-                        <h3>Weight<br />
-                            <span style={{ color: `var(--${pokemon.types?.[0]}-color)`, textTransform: 'none' }}>
-                                {pokemon.weight} hg
-                            </span>
-                        </h3>
-                    </div>
-                    <div className='my-3'>
-                        <h3><span>Types</span></h3>
-                        <div className='d-flex gap-3 justify-content-center'>
-                            {pokemon.types?.map(type =>
-                                <div key={type} onClick={e => goTypeFilter(type)} className={`bg-${type} p-1 rounded-2`} style={{ width: '6rem', cursor: 'pointer' }}>
-                                    <h6 className='m-0 paragraph-white'><span>{type}</span></h6>
-                                </div>
-                            )}
+                    <img src={pokemon.image} className='col-8 col-sm-6 col-md-4' />
+                    <div className={`rounded p-2 ${isDark ? 'bg-secon-dark' : 'bg-prima'}`}>
+                        <h4>N.º{pokemon.id}</h4>
+                        <div className='d-flex m-auto justify-content-center' style={{ width: '80%' }}>
+                            <div className='col-3 col-sm-4 col-md-5 mt-3 border-2 border-top'></div>
+                            <h3 className='mx-2' style={{ color: `var(--${pokemon.types?.[0]}-color)` }}>
+                                <span>{pokemon.name}</span>
+                            </h3>
+                            <div className='col-3 col-sm-4 col-md-5 mt-3 border-2 border-top'></div>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div className='d-flex flex-column flex-sm-row mt-5 col-12 col-md-8 m-auto justify-content-evenly bg-prima rounded p-2 shadow'>
-                <div className='col-12 col-md-6'>
-                    <div className='mt-3'>
-                        <h3><span>Abilities</span></h3>
-                        {pokemon.abilities?.map(ability => <Abilities key={ability} urlAbility={ability} type={pokemon.types?.[0]} />)}
-                    </div>
-                </div>
-            </div>
-
-
-            <div className='mt-5 col-12 col-md-8 m-auto bg-prima d-flex flex-column flex-md-row rounded p-2 shadow' >
-                <div className='col-12 col-md-6 m-auto mt-3'>
-                    <h3><span>Stats</span></h3>
-                    <div className='mt-5'>
-                        {pokemon.stats?.map(stat => (
-                            <h5 key={stat.name} className='text-start'>{stat.name.replace('-', ' ')} : <span style={{ color: `var(--${pokemon.types?.[0]}-color)` }}>{stat.value}</span></h5>
-                        ))}
-                    </div>
-                </div>
-                <div className='col-12 col-md-8 mt-3'>
-                    <h3><span>Shiny</span></h3>
-                    <img src={pokemon.imageShiny} className='col-6 m-auto' />
-                </div>
-            </div>
-
-
-            <div className='mt-5 col-12 col-md-8 m-auto bg-prima rounded p-2 scroll-vertical shadow'>
-                <h3 className='mt-3'><span>Moves</span></h3>
-                <div id='pokemon-moves' className='d-flex flex-row flex-wrap'>
-                    {pokemon.moves?.map(move => (
-                        <div key={move} className='col-6 mt-2'>
-                            <div className={`bg-${pokemon.types[0]} col-10 col-md-8 col-lg-6 m-auto rounded p-2`}>
-                                <small >{move.replace('-', ' ')}</small>
+                        <div className='d-flex justify-content-evenly'>
+                            <h4>Height<br />
+                                <span style={{ color: `var(--${pokemon.types?.[0]}-color)`, textTransform: 'none' }}>
+                                    {pokemon.height} dm
+                                </span>
+                            </h4>
+                            <h4>Weight<br />
+                                <span style={{ color: `var(--${pokemon.types?.[0]}-color)`, textTransform: 'none' }}>
+                                    {pokemon.weight} hg
+                                </span>
+                            </h4>
+                        </div>
+                        <div className='my-3'>
+                            <h4><span>Types</span></h4>
+                            <div className='d-flex gap-3 justify-content-center'>
+                                {pokemon.types?.map(type =>
+                                    <div key={type} onClick={e => goTypeFilter(type)} className={`bg-${type} p-1 rounded-2`} style={{ width: '6rem', cursor: 'pointer' }}>
+                                        <h6 className='m-0 paragraph-white'><span>{type}</span></h6>
+                                    </div>
+                                )}
                             </div>
                         </div>
-                    ))}
+                    </div>
                 </div>
-            </div>
 
 
-            <div className='mt-5 col-12 col-md-8 m-auto bg-prima rounded p-2 shadow'>
-                <h3><span>Encounters</span></h3>
-                <h5>Not available</h5>
+                <div className={`d-flex flex-column flex-sm-row mt-5 col-10 col-md-8 m-auto justify-content-evenly rounded p-2 shadow ${isDark ? 'bg-secon-dark' : 'bg-prima'}`}>
+                    <div className='col-12 col-md-10'>
+                        <div className='mt-3'>
+                            <h4><span>Abilities</span></h4>
+                            {pokemon.abilities?.map(ability => <Abilities key={ability} urlAbility={ability} type={pokemon.types?.[0]} />)}
+                        </div>
+                    </div>
+                </div>
+
+
+                <div className={`mt-5 col-10 col-md-8 m-auto d-flex flex-column flex-md-row rounded p-2 shadow ${isDark ? 'bg-secon-dark' : 'bg-prima'}`} >
+                    <div className='col-10 col-md-6 m-auto mt-3'>
+                        <h4><span>Stats</span></h4>
+                        <div className='mt-5'>
+                            {pokemon.stats?.map(stat => (
+                                <h6 key={stat.name} className='text-start'>{stat.name.replace('-', ' ')} : <span style={{ color: `var(--${pokemon.types?.[0]}-color)` }}>{stat.value}</span></h6>
+                            ))}
+                        </div>
+                    </div>
+                    <div className='col-12 col-md-8 mt-3'>
+                        <h4><span>Shiny</span></h4>
+                        <img src={pokemon.imageShiny} className='col-6 m-auto' />
+                    </div>
+                </div>
+
+
+                <div className={`mt-5 col-12 col-md-8 m-auto rounded p-2 scroll-vertical shadow ${isDark ? 'bg-secon-dark text-white' : 'bg-prima'}`}>
+                    <h4 className='mt-3'><span>Moves</span></h4>
+                    <table className={`table ${isDark && 'text-white'}`}>
+                        <thead>
+                            <tr>
+                                <th className='text-start' scope="col">Name</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Power</th>
+                                <th scope="col">PP</th>
+                                <th scope='col'><i class="fa-solid fa-arrows-to-dot"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {movesPaginated?.map(move => <MovesPokemon key={move} urlMove={'https://pokeapi.co/api/v2/move/' + move} />)}
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div className={`mt-5 col-12 col-md-8 m-auto rounded p-2 shadow ${isDark ? 'bg-secon-dark text-white' : 'bg-prima'}`}>
+                    <h4><span>Encounters</span></h4>
+                    <h5>Not available</h5>
+                </div>
             </div>
         </div>
     );
