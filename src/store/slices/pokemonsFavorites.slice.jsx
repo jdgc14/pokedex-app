@@ -9,10 +9,13 @@ export const pokemonsFavoritesSlice = createSlice({
         },
         deleteFavorite: (state, action) => {
             state.splice(action.payload, 1)
+        },
+        resetFavorites: (state, action) => {
+            return []
         }
     }
 })
 
-export const { addFavorite, deleteFavorite } = pokemonsFavoritesSlice.actions;
+export const { addFavorite, deleteFavorite, resetFavorites } = pokemonsFavoritesSlice.actions;
 
 export default pokemonsFavoritesSlice.reducer;

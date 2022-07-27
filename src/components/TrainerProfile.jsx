@@ -15,7 +15,7 @@ const TrainerProfile = () => {
             <div className='col-12 col-md-4 m-auto'>
                 <img src={user.avatar} style={{ width: '40%' }} />
             </div>
-            <div>
+            <div className=''>
                 {pokemonsFavoritesID.length ? (
                     <>
                         <h2>These are your favorite pokemons:</h2>

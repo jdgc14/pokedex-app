@@ -102,7 +102,7 @@ const PokemonDetails = () => {
     }, [pokemon, pokemonsFavorites, nextPokemonName])
 
 
-    const movesPaginated = pokemon.moves?.slice(0, 10)
+    // const movesPaginated = pokemon.moves?.slice(0, 10)
 
     return (
         <div className='container'>
@@ -204,7 +204,7 @@ const PokemonDetails = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {movesPaginated?.map(move => <MovesPokemon key={move} urlMove={'https://pokeapi.co/api/v2/move/' + move} />)}
+                            {pokemon.moves?.map(move => <MovesPokemon key={move} urlMove={'https://pokeapi.co/api/v2/move/' + move} />)}
                         </tbody>
                     </table>
                 </div>
