@@ -99,7 +99,7 @@ const PokemonDetails = () => {
     useEffect(() => {
         getNextPrevPokemonName()
         isOrNotFavorite()
-    }, [pokemon, pokemonsFavorites])
+    }, [pokemon, pokemonsFavorites, nextPokemonName])
 
 
     const movesPaginated = pokemon.moves?.slice(0, 10)
