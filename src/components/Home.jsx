@@ -76,7 +76,7 @@ const Home = () => {
                         {number}
                     </button>
                 ))}
-                {(page !== lastPage || lastPage !== 0) && (
+                {(page !== lastPage && lastPage !== 0) && (
                     <button onClick={up} className={`${isDark ? 'button-dark':'button'} p-2 rounded`}>
                         <i className="fa-solid fa-angle-right"></i>
                     </button>
