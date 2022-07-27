@@ -13,8 +13,6 @@ function App() {
 
   const isDark = useSelector(state => state.user.isDarkMode)
 
-  console.log(isDark)
-
   return (
     <div className={`App ${isDark? 'bg-prima-dark paragraph-white':'bg-secon'}`}>
       <HashRouter>

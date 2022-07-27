@@ -13,7 +13,7 @@ const NavBar = () => {
     const dispatch = useDispatch()
 
     return (
-        <div className='d-flex flex-column p-1' style={{ position: 'fixed', zIndex: '1' }}>
+        <div className='d-flex flex-column p-2 gap-2' style={{ position: 'fixed', zIndex: '1', top:'350px' }}>
             <button onClick={() => dispatch(changeName(''))} className={`${isDark ? 'button-dark':'button'} p-2 rounded`}>
                 <i className="fa-solid fa-right-from-bracket"></i>
             </button>

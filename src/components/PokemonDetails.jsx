@@ -5,7 +5,7 @@ import Abilities from './Abilities'
 import MovesPokemon from './MovesPokemon'
 import { useDispatch, useSelector } from 'react-redux'
 import { setType } from '../store/slices/type.slice'
-import { addFavorite, deleteFavorite } from '../store/slices/pokemons.slice'
+import { addFavorite, deleteFavorite } from '../store/slices/pokemonsFavorites.slice'
 
 
 const PokemonDetails = () => {
@@ -14,7 +14,7 @@ const PokemonDetails = () => {
 
     const { id } = useParams()
 
-    const pokemonsFavorites = useSelector(state => state.pokemons)
+    const pokemonsFavorites = useSelector(state => state.pokemonsFavorites)
 
     const [pokemon, setPokemon] = useState({})
 
@@ -103,7 +103,6 @@ const PokemonDetails = () => {
 
 
     const movesPaginated = pokemon.moves?.slice(0, 10)
-    console.log(movesPaginated)
 
     return (
         <div className='container'>
@@ -201,7 +200,7 @@ const PokemonDetails = () => {
                                 <th scope="col">Type</th>
                                 <th scope="col">Power</th>
                                 <th scope="col">PP</th>
-                                <th scope='col'><i class="fa-solid fa-arrows-to-dot"></i></th>
+                                <th scope='col'><i className="fa-solid fa-arrows-to-dot"></i></th>
                             </tr>
                         </thead>
                         <tbody>

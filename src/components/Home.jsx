@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import PokemonCard from './PokemonCard';
 import InputTypePokemon from './InputTypePokemon';
@@ -6,7 +6,7 @@ import InputPokemon from './InputPokemon';
 import '../App.css';
 
 const Home = () => {
-    const isDark = useSelector(state => state.user.isDarkMode);
+    const isDark = useSelector(state => state.user.isDarkMode)
 
     // Get the username and settings from the store 
     const user = useSelector(state => state.user.name)
@@ -16,7 +16,7 @@ const Home = () => {
     const pokemonsVisibles = useSelector(state => state.user.pokemonsVisibles)
 
     // Set the initial state of the pokemons
-    const [pokemons, setPokemons] = useState([])
+    const pokemons = useSelector(state => state.pokemons)
 
     // Section to paginate pokemons
     const [page, setPage] = useState(1)
@@ -28,7 +28,7 @@ const Home = () => {
     const pokemonsPaginated = pokemons.slice(firstIndex, lastIndex)
 
     const lastPage = Math.ceil(pokemons.length / pokemonsVisibles)
-    console.log(lastPage)
+
     const numbersOfPages = []
 
     for (let i = page - 3; i <= page + 3; i++) {
@@ -37,13 +37,13 @@ const Home = () => {
         }
     }
 
-    if (page === 1) {
-        numbersOfPages.push(5, 6, 7)
-    } else if (page === 2) {
-        numbersOfPages.push(6, 7)
-    } else if (page === 3) {
-        numbersOfPages.push(7)
-    }
+    // if (page === 1) {
+    //     numbersOfPages.push(5, 6, 7)
+    // } else if (page === 2) {
+    //     numbersOfPages.push(6, 7)
+    // } else if (page === 3) {
+    //     numbersOfPages.push(7)
+    // }
 
     const up = () => {
         setPage(page + 1)
@@ -60,7 +60,7 @@ const Home = () => {
             </h2>
             <div className='d-flex flex-column flex-sm-row gap-2'>
                 <InputPokemon />
-                <InputTypePokemon setPokemons={setPokemons} />
+                <InputTypePokemon />
             </div>
             <div id='pokemons-home-container' className='row'>
                 {pokemonsPaginated.map(pokemon => <PokemonCard key={pokemon.name} pokemonUrl={pokemon.url} />)}

@@ -23,8 +23,6 @@ const MovesPokemon = ({ urlMove }) => {
         getMove()
     }, [])
 
-    console.log(move)
-
     return (
         <>
             <tr>

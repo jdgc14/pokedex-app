@@ -3,8 +3,9 @@ import '../App.css';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import  {setType}  from '../store/slices/type.slice';
+import {getPokemonsByType} from '../store/slices/pokemons.slice';
 
-const InputTypePokemon = ( {setPokemons} ) => {
+const InputTypePokemon = (  ) => {
 
     const dispatch = useDispatch()
 
@@ -23,18 +24,18 @@ const InputTypePokemon = ( {setPokemons} ) => {
         getTypes()
     }, [])
 
-    const getPokemonByType = (type) => {
-        if (type === 'all') {
-            axios.get('https://pokeapi.co/api/v2/pokemon/?limit=1154')
-                .then(res => setPokemons(res.data.results))
-    }   else {
-        axios.get(`https://pokeapi.co/api/v2/type/${type}`)
-            .then(res => setPokemons(res.data.pokemon.map(pokemon => pokemon.pokemon)))
-    }
-    }
+    // const getPokemonByType = (type) => {
+    //     if (type === 'all') {
+    //         axios.get('https://pokeapi.co/api/v2/pokemon/?limit=1154')
+    //             .then(res => setPokemons(res.data.results))
+    // }   else {
+    //     axios.get(`https://pokeapi.co/api/v2/type/${type}`)
+    //         .then(res => setPokemons(res.data.pokemon.map(pokemon => pokemon.pokemon)))
+    // }
+    // }
 
     useEffect(() => {
-        getPokemonByType(type)
+        dispatch(getPokemonsByType(type))
     }, [ pokemonsVisibles, type])
 
 

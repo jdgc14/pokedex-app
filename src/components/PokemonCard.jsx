@@ -1,14 +1,14 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import '../App.css';
 import '../PokemonCard.css';
 
 
 const PokemonCard = ({ pokemonUrl }) => {
 
-    const isDark = useSelector(state => state.user.isDarkMode);
+    const isDark = useSelector(state => state.user.isDarkMode)
 
     const [pokemonData, setPokemonData] = useState({})
 

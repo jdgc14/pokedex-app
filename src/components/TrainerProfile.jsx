@@ -7,7 +7,7 @@ const TrainerProfile = () => {
 
     const user = useSelector(state => state.user)
 
-    const pokemonsFavoritesID = useSelector(state => state.pokemons)
+    const pokemonsFavoritesID = useSelector(state => state.pokemonsFavorites)
 
     return (
         <div className='p-4 text-center' style={{ minHeight: '100vh' }}>

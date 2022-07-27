@@ -13,7 +13,7 @@ const MainLayout = () => {
 
     const avatar = useSelector(state => state.user.avatar)
     //user && avatar
-    if (true) {
+    if (user && avatar) {
         return (
             <>
                 <NavBar />
